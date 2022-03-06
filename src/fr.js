@@ -4,10 +4,13 @@ const sharkdb = apis["shark-db-db"].api;
 const sperms = apis["shark-perms-manager"].api;
 const frapi = apis["fr-api"].api; //unusual way of getting apis, but i need them for onMessage() too
 let frCache = [];
+let errored = false
 
 function onMessage(message) {
-	if(!frCache) {
+	if (errored) return;
+    if(!frCache) {
         sharkdb.getFrs(frs => {
+            if(frs == "ERR") errored = true;
             frCache = frs;
             return onMessage(message);
         })
