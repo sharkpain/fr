@@ -19,7 +19,8 @@ function onMessage(message) {
         if(!fr) return
         if(fr.creator != message.author.id && !fr.global) return
         if(fr.global && fr.forcedUnglobal && fr.creator != message.author.id) return
-        sharkdb.getUser(message.author.id, user => {
+        sharkdb.foc(message.author.id, user => {
+            if(!user) return
             if(user.frDisabled) return
             if(user.banned) return
             message.channel.send(fr.response);
