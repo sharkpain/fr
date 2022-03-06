@@ -3,7 +3,7 @@ const apis = require('../../../index').apis;
 const sharkdb = apis["shark-db-db"].api;
 const sperms = apis["shark-perms-manager"].api;
 const frapi = apis["fr-api"].api; //unusual way of getting apis, but i need them for onMessage() too
-let frCache = [];
+let frCache
 let errored = false
 
 function onMessage(message) {
