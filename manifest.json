@@ -10,6 +10,7 @@
     "entrypoints": {
         "fr": "src/fr.js"
     },
+    "eventHandlers": ["messageCreate"],
     "module_dependencies": [
         "shark-db",
         "shark-perms"
