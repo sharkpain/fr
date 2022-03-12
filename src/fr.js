@@ -13,6 +13,7 @@ function onMessage(message) {
 	if (message.author.bot) return;
 	if (ignoreUserList.includes(message.author.id)) return;
 	if (Date.now() - cooldown < 1000) return;
+	cooldown = Date.now()
 	if(!frCache) {
 		sharkdb.getFrs(frs => {
 			if(frs == "ERR") errored = true;
