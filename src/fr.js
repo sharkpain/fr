@@ -6,11 +6,13 @@ const frapi = apis["fr-api"].api; //unusual way of getting apis, but i need them
 let frCache
 let errored = false
 let ignoreUserList = []
+let cooldown = Date.now()
 
 function onMessage(message) {
 	if (errored) return;
 	if (message.author.bot) return;
 	if (ignoreUserList.includes(message.author.id)) return;
+	if (Date.now() - cooldown < 1000) return;
 	if(!frCache) {
 		sharkdb.getFrs(frs => {
 			if(frs == "ERR") errored = true;
